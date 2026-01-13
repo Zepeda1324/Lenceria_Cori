@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cori - Lenceria y boneteria</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header y Navegación -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <i class="fas fa-tshirt"></i>
+                    <span>Cori - Lenceria y boneteria</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#ofertas">Ofertas</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                    <button class="cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Nueva Colección 2026</h1>
+            <p>Descubre las últimas tendencias en moda</p>
+            <button class="btn-primary" onclick="document.getElementById('productos').scrollIntoView({behavior: 'smooth'})">
+                Comprar Ahora
+            </button>
+        </div>
+    </section>
+
+    <!-- Filtros -->
+    <section class="filters">
+        <div class="container">
+            <h2>Categorías</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="todos">Todos</button>
+                <button class="filter-btn" data-category="hombre">Hombre</button>
+                <button class="filter-btn" data-category="mujer">Mujer</button>
+                <button class="filter-btn" data-category="accesorios">Accesorios</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos -->
+    <section id="productos" class="productos">
+        <div class="container">
+            <h2>Nuestros Productos</h2>
+            <div class="productos-grid" id="productosGrid">
+                <!-- Los productos se generarán dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Ofertas -->
+    <section id="ofertas" class="ofertas">
+        <div class="container">
+            <h2>Ofertas Especiales</h2>
+            <div class="ofertas-banner">
+                <div class="oferta-card">
+                    <i class="fas fa-tag"></i>
+                    <h3>50% OFF</h3>
+                    <p>En toda la colección de verano</p>
+                </div>
+                <div class="oferta-card">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Envío Gratis</h3>
+                    <p>En compras mayores a $50</p>
+                </div>
+                <div class="oferta-card">
+                    <i class="fas fa-undo"></i>
+                    <h3>Devoluciones</h3>
+                    <p>30 días para devolver tu compra</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="contacto">
+        <div class="container">
+            <h2>Contáctanos</h2>
+            <div class="contacto-content">
+                <div class="contacto-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Dirección</h3>
+                            <p>Av. Principal 123, Ciudad</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Teléfono</h3>
+                            <p>+1 234 567 890</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@cori.com</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <form class="contacto-form" id="contactForm">
+                    <input type="text" placeholder="Nombre" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Mensaje" rows="5" required></textarea>
+                    <button type="submit" class="btn-primary">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Cori - Lenceria y boneteria. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal del Carrito -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Carrito de Compras</h2>
+                <button class="close-modal" id="closeCart">&times;</button>
+            </div>
+            <div class="modal-body" id="cartItems">
+                <!-- Los items del carrito se generarán aquí -->
+            </div>
+            <div class="modal-footer">
+                <div class="cart-total">
+                    <h3>Total: $<span id="cartTotal">0.00</span></h3>
+                </div>
+                <button class="btn-primary" id="checkoutBtn">Proceder al Pago</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Checkout -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Finalizar Compra</h2>
+                <button class="close-modal" id="closeCheckout">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="checkoutForm">
+                    <h3>Información de Envío</h3>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="firstName">Nombre</label>
+                            <input id="firstName" name="given-name" type="text" autocomplete="given-name" placeholder="Tu nombre" required>
+                            <small class="error"></small>
+                        </div>
+                        <div class="form-field">
+                            <label for="lastName">Apellidos</label>
+                            <input id="lastName" name="family-name" type="text" autocomplete="family-name" placeholder="Tus apellidos" required>
+                            <small class="error"></small>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" autocomplete="email" placeholder="tucorreo@ejemplo.com" required>
+                            <small class="error"></small>
+                        </div>
+                        <div class="form-field">
+                            <label for="phone">Teléfono</label>
+                            <input id="phone" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="10 dígitos" required>
+                            <small class="error"></small>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label for="address">Dirección</label>
+                        <input id="address" name="address-line1" type="text" autocomplete="address-line1" placeholder="Calle y número" required>
+                        <small class="error"></small>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="city">Ciudad</label>
+                            <input id="city" name="address-level2" type="text" autocomplete="address-level2" placeholder="Tu ciudad" required>
+                            <small class="error"></small>
+                        </div>
+                        <div class="form-field">
+                            <label for="postal">Código Postal</label>
+                            <input id="postal" name="postal-code" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="CP" required>
+                            <small class="error"></small>
+                        </div>
+                    </div>
+
+                    <h3>Información de Pago</h3>
+                    <div class="form-field">
+                        <label for="ccName">Nombre en la tarjeta</label>
+                        <input id="ccName" name="cc-name" type="text" autocomplete="cc-name" placeholder="Como aparece en la tarjeta" required>
+                        <small class="error"></small>
+                    </div>
+                    <div class="form-field">
+                        <div class="field-header">
+                            <label for="cardNumber">Número de tarjeta</label>
+                            <span id="cardBrand" class="brand-pill brand-unknown" aria-live="polite">
+                                <i class="fas fa-credit-card"></i>
+                                <span class="brand-text">Desconocida</span>
+                            </span>
+                        </div>
+                        <input id="cardNumber" name="cc-number" type="text" inputmode="numeric" autocomplete="cc-number" placeholder="#### #### #### ####" maxlength="19" required>
+                        <small class="error"></small>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="cardExpiry">Vencimiento</label>
+                            <input id="cardExpiry" name="cc-exp" type="text" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/AA" maxlength="5" required>
+                            <small class="error"></small>
+                        </div>
+                        <div class="form-field">
+                            <label for="cardCvv">CVV</label>
+                            <input id="cardCvv" name="cc-csc" type="password" inputmode="numeric" autocomplete="cc-csc" placeholder="3 dígitos" maxlength="3" required>
+                            <small class="error"></small>
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-total">
+                        <h3>Total a Pagar: $<span id="checkoutTotal">0.00</span></h3>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Confirmar Pago</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
